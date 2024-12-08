@@ -33,7 +33,11 @@ app.add_middleware(
 )
 
 # Load the model
-model = YOLO("best.pt")
+model = YOLO("../best.pt")
+
+@app.get('/')
+async def health_check():
+    return 'health check is successful!'
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...)):
